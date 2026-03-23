@@ -1,0 +1,14 @@
+---
+import { fetchApps } from '../../data/apps';
+import LangRedirect from '../../layouts/LangRedirect.astro';
+
+export async function getStaticPaths() {
+  const apps = await fetchApps();
+  return apps.map((app) => ({
+    params: { slug: app.slug },
+  }));
+}
+
+const { slug } = Astro.params as { slug: string };
+---
+<LangRedirect suffix={`app/${slug}/`} />
