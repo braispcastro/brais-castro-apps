@@ -24,7 +24,7 @@ const stars = rating ? getStars(rating) : null;
       <span class="text-[#f5a623]">★</span>
     ))}
     {stars.fraction > 0 && (
-      <span class="relative inline-block text-gray-200">
+      <span class="relative inline-block text-gray-200 dark:text-[#3a3a3c]">
         ★
         <span
           class="absolute inset-0 overflow-hidden text-[#f5a623]"
@@ -33,7 +33,7 @@ const stars = rating ? getStars(rating) : null;
       </span>
     )}
     {Array.from({ length: stars.empty }).map(() => (
-      <span class="text-gray-200">★</span>
+      <span class="text-gray-200 dark:text-[#3a3a3c]">★</span>
     ))}
   </span>
 )}

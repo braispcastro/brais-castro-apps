@@ -11,15 +11,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-gray-100 mt-20">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#6e6e73]">
+<footer class="border-t border-gray-100 dark:border-[#3a3a3c] mt-20">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#6e6e73] dark:text-[#98989d]">
     <p>© {year} {t('footer.copyright', lang)}</p>
     <nav class="flex items-center gap-5">
-      <a href={`${base}/${lang}/privacy/`} class="hover:text-[#1d1d1f] transition-colors">{t('nav.privacy', lang)}</a>
-      <a href={`${base}/${lang}/contact/`} class="hover:text-[#1d1d1f] transition-colors">{t('nav.contact', lang)}</a>
+      <a href={`${base}/${lang}/privacy/`} class="hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] transition-colors">{t('nav.privacy', lang)}</a>
+      <a href={`${base}/${lang}/contact/`} class="hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] transition-colors">{t('nav.contact', lang)}</a>
     </nav>
     <p class="text-xs">
-      <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="hover:text-[#1d1d1f] transition-colors">
+      <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] transition-colors">
         {t('footer.built_with', lang)}
       </a>
     </p>

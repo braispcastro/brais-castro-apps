@@ -15,7 +15,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 <a
   href={`${base}/${lang}/app/${app.slug}/`}
-  class="group flex flex-col bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-gray-200 transition-all duration-200"
+  class="group flex flex-col bg-white dark:bg-[#1c1c1e] border border-gray-100 dark:border-[#3a3a3c] rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-gray-200 dark:hover:border-[#48484a] transition-all duration-200"
 >
   <!-- Icon -->
   <div class="mb-4">
@@ -30,13 +30,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   </div>
 
   <!-- Name & category -->
-  <h2 class="text-base font-semibold text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors leading-snug mb-1">
+  <h2 class="text-base font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] group-hover:text-[#0071e3] dark:group-hover:text-[#0a84ff] transition-colors leading-snug mb-1">
     {app.name}
   </h2>
-  <p class="text-xs text-[#6e6e73] mb-3">{app.category}</p>
+  <p class="text-xs text-[#6e6e73] dark:text-[#98989d] mb-3">{app.category}</p>
 
   <!-- Rating -->
-  <div class="mt-auto flex items-center gap-1.5 text-xs text-[#6e6e73]">
+  <div class="mt-auto flex items-center gap-1.5 text-xs text-[#6e6e73] dark:text-[#98989d]">
     {app.rating !== null ? (
       <>
         <StarRating rating={app.rating} size="sm" />
