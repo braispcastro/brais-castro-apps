@@ -8,16 +8,9 @@ const { rating, size = 'md' } = Astro.props;
 
 const starSize = size === 'sm' ? 'text-xs' : 'text-sm';
 
-function getStars(rating: number): { full: number; half: boolean; empty: number } {
-  const full = Math.floor(rating);
-  const half = rating - full >= 0.3 && rating - full < 0.8;
-  const halfFull = rating - full >= 0.8 ? 1 : 0;
-  const totalFull = full + halfFull;
-  return {
-    full: totalFull,
-    half: half,
-    empty: 5 - totalFull - (half ? 1 : 0),
-  };
+function getStars(rating: number): { full: number; empty: number } {
+  const full = Math.round(rating);
+  return { full, empty: 5 - full };
 }
 
 const stars = rating ? getStars(rating) : null;
@@ -28,7 +21,6 @@ const stars = rating ? getStars(rating) : null;
     {Array.from({ length: stars.full }).map(() => (
       <span>★</span>
     ))}
-    {stars.half && <span>⭐</span>}
     {Array.from({ length: stars.empty }).map(() => (
       <span class="text-gray-200">★</span>
     ))}
