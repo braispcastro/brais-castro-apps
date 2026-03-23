@@ -8,19 +8,30 @@ const { rating, size = 'md' } = Astro.props;
 
 const starSize = size === 'sm' ? 'text-xs' : 'text-sm';
 
-function getStars(rating: number): { full: number; empty: number } {
-  const full = Math.round(rating);
-  return { full, empty: 5 - full };
+function getStars(rating: number): { full: number; fraction: number; empty: number } {
+  const full = Math.floor(rating);
+  const fraction = rating - full;
+  const empty = 5 - full - (fraction > 0 ? 1 : 0);
+  return { full, fraction, empty };
 }
 
 const stars = rating ? getStars(rating) : null;
 ---
 
 {stars && (
-  <span class={`inline-flex items-center gap-0.5 ${starSize} text-[#f5a623]`} aria-label={`${rating} out of 5 stars`}>
+  <span class={`inline-flex items-center gap-0.5 ${starSize}`} aria-label={`${rating} out of 5 stars`}>
     {Array.from({ length: stars.full }).map(() => (
-      <span>★</span>
+      <span class="text-[#f5a623]">★</span>
     ))}
+    {stars.fraction > 0 && (
+      <span class="relative inline-block text-gray-200">
+        ★
+        <span
+          class="absolute inset-0 overflow-hidden text-[#f5a623]"
+          style={`width: ${Math.round(stars.fraction * 100)}%`}
+        >★</span>
+      </span>
+    )}
     {Array.from({ length: stars.empty }).map(() => (
       <span class="text-gray-200">★</span>
     ))}
