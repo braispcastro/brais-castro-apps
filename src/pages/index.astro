@@ -1,0 +1,21 @@
+---
+// Redirect to /en/ or /es/ based on browser language.
+// This is the only page that uses JS on the site.
+---
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Brais Castro — iOS Apps</title>
+    <script is:inline>
+      const lang = navigator.language?.startsWith('es') ? 'es' : 'en';
+      const base = import.meta.env.BASE_URL || '/brais-castro-apps';
+      window.location.replace(base.replace(/\/$/, '') + '/' + lang + '/');
+    </script>
+    <noscript>
+      <meta http-equiv="refresh" content="0; url=./en/" />
+    </noscript>
+  </head>
+  <body></body>
+</html>

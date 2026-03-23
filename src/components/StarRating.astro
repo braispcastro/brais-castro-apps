@@ -1,0 +1,36 @@
+---
+interface Props {
+  rating: number | null;
+  size?: 'sm' | 'md';
+}
+
+const { rating, size = 'md' } = Astro.props;
+
+const starSize = size === 'sm' ? 'text-xs' : 'text-sm';
+
+function getStars(rating: number): { full: number; half: boolean; empty: number } {
+  const full = Math.floor(rating);
+  const half = rating - full >= 0.3 && rating - full < 0.8;
+  const halfFull = rating - full >= 0.8 ? 1 : 0;
+  const totalFull = full + halfFull;
+  return {
+    full: totalFull,
+    half: half,
+    empty: 5 - totalFull - (half ? 1 : 0),
+  };
+}
+
+const stars = rating ? getStars(rating) : null;
+---
+
+{stars && (
+  <span class={`inline-flex items-center gap-0.5 ${starSize} text-[#f5a623]`} aria-label={`${rating} out of 5 stars`}>
+    {Array.from({ length: stars.full }).map(() => (
+      <span>★</span>
+    ))}
+    {stars.half && <span>⭐</span>}
+    {Array.from({ length: stars.empty }).map(() => (
+      <span class="text-gray-200">★</span>
+    ))}
+  </span>
+)}

@@ -1,0 +1,35 @@
+---
+import { fetchApps } from '../../data/apps';
+import { SUPPORTED_LANGS, t } from '../../i18n/utils';
+import type { Lang } from '../../i18n/utils';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import AppGrid from '../../components/AppGrid.astro';
+
+export async function getStaticPaths() {
+  const apps = await fetchApps();
+  return SUPPORTED_LANGS.map((lang) => ({
+    params: { lang },
+    props: { apps },
+  }));
+}
+
+interface Props {
+  apps: Awaited<ReturnType<typeof fetchApps>>;
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const { apps } = Astro.props;
+const currentPath = `/${lang}/`;
+---
+
+<Layout lang={lang} title={t('meta.home_title', lang)}>
+  <Header lang={lang} currentPath={currentPath} />
+  <main>
+    <Hero lang={lang} />
+    <AppGrid apps={apps} lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

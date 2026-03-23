@@ -1,0 +1,274 @@
+---
+import { SUPPORTED_LANGS, t } from '../../i18n/utils';
+import type { Lang } from '../../i18n/utils';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export function getStaticPaths() {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const currentPath = `/${lang}/privacy/`;
+
+const isEs = lang === 'es';
+const effectiveDate = '2025-03-15';
+const email = 'braiscastroapps@gmail.com';
+---
+
+<Layout lang={lang} title={t('meta.privacy_title', lang)}>
+  <Header lang={lang} currentPath={currentPath} />
+  <main class="max-w-2xl mx-auto px-4 sm:px-6 py-20">
+    <h1 class="text-3xl sm:text-4xl font-bold text-[#1d1d1f] mb-2">{t('privacy.title', lang)}</h1>
+    <p class="text-sm text-[#6e6e73] mb-10">
+      {t('privacy.effective', lang)} {effectiveDate}
+    </p>
+
+    <div class="prose prose-gray max-w-none text-[#1d1d1f] [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:mt-8 [&_h2]:mb-2 [&_p]:text-[#3d3d3f] [&_p]:mb-4 [&_ul]:text-[#3d3d3f] [&_ul]:mb-4 [&_li]:mb-1 [&_a]:text-[#0071e3] [&_a]:underline">
+
+      {isEs ? (
+        <>
+          <p>
+            Este software es proporcionado por Brais Castro y está destinado a su uso tal como se ofrece.
+            Esta página informa a los visitantes sobre nuestras políticas en relación con la recopilación,
+            uso y divulgación de información personal cuando se decide utilizar nuestro software.
+          </p>
+          <p>
+            Si eliges utilizar nuestro software, aceptas la recopilación y el uso de información de acuerdo
+            con esta política. La información personal que recopilamos se utiliza para proporcionar y mejorar el software.
+            No usaremos ni compartiremos tu información con nadie, excepto en los casos descritos en esta Política de Privacidad.
+          </p>
+
+          <h2>Recopilación y uso de información</h2>
+          <p>
+            Para una mejor experiencia, algunas de nuestras apps pueden requerir que proporciones cierta información
+            de identificación personal. La información solicitada será retenida por nosotros y utilizada según se
+            describe en esta política de privacidad.
+          </p>
+
+          <h2>Servicios de terceros</h2>
+          <p>
+            Algunas de nuestras apps utilizan servicios de terceros que pueden recopilar información utilizada
+            para identificarte. A continuación se presentan los enlaces a las políticas de privacidad de los
+            proveedores de servicios de terceros utilizados:
+          </p>
+          <ul>
+            <li><a href="https://support.google.com/admob/answer/6128543?hl=es" target="_blank" rel="noopener noreferrer">AdMob (Google)</a></li>
+            <li><a href="https://firebase.google.com/policies/analytics" target="_blank" rel="noopener noreferrer">Google Analytics for Firebase</a></li>
+          </ul>
+
+          <h2>App Tracking Transparency</h2>
+          <p>
+            Algunas de nuestras apps utilizan el framework App Tracking Transparency (ATT) de Apple.
+            En los dispositivos que ejecutan iOS 14.5 o superior, se te solicitará permiso antes de que
+            cualquier dato sea utilizado con fines publicitarios o compartido con intermediarios de datos.
+            Puedes gestionar estos permisos en cualquier momento desde los Ajustes de tu dispositivo.
+          </p>
+
+          <h2>Datos de registro</h2>
+          <p>
+            Queremos informarte de que, cuando utilizas nuestro software, en caso de producirse un error en
+            la app, recopilamos datos e información (a través de productos de terceros) en tu teléfono llamados
+            Datos de Registro. Estos Datos de Registro pueden incluir información como la dirección IP de tu
+            dispositivo, el nombre del dispositivo, la versión del sistema operativo, la configuración de la app
+            al utilizarla, la fecha y hora de uso del software, y otras estadísticas.
+          </p>
+
+          <h2>Cookies</h2>
+          <p>
+            Las cookies son archivos con una pequeña cantidad de datos que se utilizan habitualmente como
+            identificadores únicos anónimos. Nuestro software no utiliza estas "cookies" explícitamente.
+            Sin embargo, la app puede utilizar código y bibliotecas de terceros que usan "cookies" para
+            recopilar información y mejorar sus servicios.
+          </p>
+
+          <h2>Proveedores de servicios</h2>
+          <p>Podemos emplear empresas e individuos de terceros por las siguientes razones:</p>
+          <ul>
+            <li>Para facilitar nuestro software.</li>
+            <li>Para proporcionar el software en nuestro nombre.</li>
+            <li>Para realizar servicios relacionados con el software.</li>
+            <li>Para ayudarnos a analizar cómo se utiliza nuestro software.</li>
+          </ul>
+          <p>
+            Queremos informar a los usuarios de que estos terceros tienen acceso a tu información personal
+            para realizar las tareas que se les asignan en nuestro nombre. Sin embargo, están obligados a
+            no divulgar ni utilizar la información para ningún otro fin.
+          </p>
+
+          <h2>Seguridad</h2>
+          <p>
+            Valoramos tu confianza al proporcionarnos tu información personal y nos esforzamos por utilizar
+            medios comercialmente aceptables para protegerla. Sin embargo, recuerda que ningún método de
+            transmisión por Internet ni método de almacenamiento electrónico es 100% seguro y fiable, y no
+            podemos garantizar su seguridad absoluta.
+          </p>
+
+          <h2>Enlaces a otros sitios</h2>
+          <p>
+            Este software puede contener enlaces a otros sitios. Si haces clic en un enlace de terceros, serás
+            dirigido a ese sitio. Ten en cuenta que estos sitios externos no son operados por nosotros. Por lo
+            tanto, te recomendamos que revises la Política de Privacidad de dichos sitios web. No tenemos control
+            ni asumimos responsabilidad alguna por el contenido, las políticas de privacidad ni las prácticas de
+            los sitios o servicios de terceros.
+          </p>
+
+          <h2>Privacidad de los menores</h2>
+          <p>
+            Este software no está dirigido a menores de 13 años. No recopilamos de forma intencionada información
+            de identificación personal de niños menores de 13 años. Si descubrimos que un menor de 13 años nos ha
+            proporcionado información personal, la eliminamos de inmediato. Si eres padre/madre o tutor y sabes
+            que tu hijo nos ha proporcionado información personal, contáctanos para que podamos tomar las medidas necesarias.
+          </p>
+
+          <h2>Tus derechos (RGPD)</h2>
+          <p>
+            Si eres residente en el Espacio Económico Europeo, tienes ciertos derechos de protección de datos. Tienes derecho a:
+          </p>
+          <ul>
+            <li>Acceder a la información personal que tenemos sobre ti.</li>
+            <li>Solicitar la corrección de datos inexactos o incompletos.</li>
+            <li>Solicitar la eliminación de tus datos personales.</li>
+            <li>Solicitar la portabilidad de tus datos.</li>
+          </ul>
+          <p>
+            Para ejercer cualquiera de estos derechos, contáctanos en <a href={`mailto:${email}`}>{email}</a>.
+          </p>
+
+          <h2>Cambios en esta Política de Privacidad</h2>
+          <p>
+            Podemos actualizar nuestra Política de Privacidad periódicamente. Te recomendamos que revises esta
+            página de vez en cuando para estar al tanto de cualquier cambio. Cualquier modificación entrará en
+            vigor en el momento de su publicación en esta página.
+          </p>
+
+          <h2>Contacto</h2>
+          <p>
+            Si tienes alguna pregunta o sugerencia sobre nuestra Política de Privacidad, no dudes en contactarnos
+            en <a href={`mailto:${email}`}>{email}</a>.
+          </p>
+        </>
+      ) : (
+        <>
+          <p>
+            This software is provided by Brais Castro and is intended for use as is.
+            This page is used to inform visitors regarding our policies with the collection, use, and disclosure of
+            Personal Information if anyone decided to use our software.
+          </p>
+          <p>
+            If you choose to use our software, then you agree to the collection and use of information in relation to
+            this policy. The Personal Information that we collect is used for providing and improving the software.
+            We will not use or share your information with anyone except as described in this Privacy Policy.
+          </p>
+
+          <h2>Information Collection and Use</h2>
+          <p>
+            For a better experience, while using our software, some apps may require you to provide certain personally
+            identifiable information. The information that we request will be retained by us and used as described in
+            this privacy policy.
+          </p>
+
+          <h2>Third-Party Services</h2>
+          <p>
+            Some of our apps use third-party services that may collect information used to identify you.
+            Links to the privacy policies of third-party service providers used by our apps:
+          </p>
+          <ul>
+            <li><a href="https://support.google.com/admob/answer/6128543?hl=en" target="_blank" rel="noopener noreferrer">AdMob (Google)</a></li>
+            <li><a href="https://firebase.google.com/policies/analytics" target="_blank" rel="noopener noreferrer">Google Analytics for Firebase</a></li>
+          </ul>
+
+          <h2>App Tracking Transparency</h2>
+          <p>
+            Some of our apps use Apple's App Tracking Transparency (ATT) framework.
+            On devices running iOS 14.5 or later, you will be asked for permission before any data is used
+            for advertising purposes or shared with data brokers. You can manage these permissions at any time
+            from your device's Settings.
+          </p>
+
+          <h2>Log Data</h2>
+          <p>
+            We want to inform you that whenever you use our software, in a case of an error in the app,
+            we collect data and information (through third-party products) on your phone called Log Data.
+            This Log Data may include information such as your device's Internet Protocol ("IP") address,
+            device name, operating system version, the configuration of the app when utilizing our software,
+            the time and date of your use of the software, and other statistics.
+          </p>
+
+          <h2>Cookies</h2>
+          <p>
+            Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers.
+            This software does not use these "cookies" explicitly. However, the app may use third-party code and
+            libraries that use "cookies" to collect information and improve their services.
+          </p>
+
+          <h2>Service Providers</h2>
+          <p>We may employ third-party companies and individuals due to the following reasons:</p>
+          <ul>
+            <li>To facilitate our software.</li>
+            <li>To provide the software on our behalf.</li>
+            <li>To perform software-related services.</li>
+            <li>To assist us in analyzing how our software is used.</li>
+          </ul>
+          <p>
+            We want to inform users of this software that these third parties have access to your Personal
+            Information to perform the tasks assigned to them on our behalf. However, they are obligated not
+            to disclose or use the information for any other purpose.
+          </p>
+
+          <h2>Security</h2>
+          <p>
+            We value your trust in providing us your Personal Information, thus we are striving to use commercially
+            acceptable means of protecting it. But remember that no method of transmission over the internet, or
+            method of electronic storage is 100% secure and reliable, and we cannot guarantee its absolute security.
+          </p>
+
+          <h2>Links to Other Sites</h2>
+          <p>
+            This software may contain links to other sites. If you click on a third-party link, you will be directed
+            to that site. Note that these external sites are not operated by us. Therefore, we strongly advise you to
+            review the Privacy Policy of these websites. We have no control over and assume no responsibility for
+            the content, privacy policies, or practices of any third-party sites or services.
+          </p>
+
+          <h2>Children's Privacy</h2>
+          <p>
+            This software does not address anyone under the age of 13. We do not knowingly collect personally
+            identifiable information from children under 13 years of age. In the case we discover that a child
+            under 13 has provided us with personal information, we immediately delete this. If you are a parent
+            or guardian and you are aware that your child has provided us with personal information, please contact
+            us so that we will be able to take the necessary actions.
+          </p>
+
+          <h2>Your Rights (GDPR)</h2>
+          <p>
+            If you are a resident of the European Economic Area, you have certain data protection rights. You have the right to:
+          </p>
+          <ul>
+            <li>Access the personal information we hold about you.</li>
+            <li>Request correction of inaccurate or incomplete data.</li>
+            <li>Request erasure of your personal data.</li>
+            <li>Request portability of your data.</li>
+          </ul>
+          <p>
+            To exercise any of these rights, please contact us at <a href={`mailto:${email}`}>{email}</a>.
+          </p>
+
+          <h2>Changes to This Privacy Policy</h2>
+          <p>
+            We may update our Privacy Policy from time to time. You are advised to review this page periodically
+            for any changes. Changes are effective immediately upon posting to this page.
+          </p>
+
+          <h2>Contact Us</h2>
+          <p>
+            If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at
+            <a href={`mailto:${email}`}>{email}</a>.
+          </p>
+        </>
+      )}
+    </div>
+  </main>
+  <Footer lang={lang} />
+</Layout>

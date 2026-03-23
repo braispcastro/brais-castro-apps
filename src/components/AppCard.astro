@@ -1,0 +1,50 @@
+---
+import type { AppData } from '../data/apps';
+import type { Lang } from '../i18n/utils';
+import { t } from '../i18n/utils';
+import StarRating from './StarRating.astro';
+
+interface Props {
+  app: AppData;
+  lang: Lang;
+}
+
+const { app, lang } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<a
+  href={`${base}/${lang}/app/${app.slug}/`}
+  class="group flex flex-col bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-gray-200 transition-all duration-200"
+>
+  <!-- Icon -->
+  <div class="mb-4">
+    <img
+      src={app.icon}
+      alt={`${app.name} icon`}
+      width="80"
+      height="80"
+      loading="lazy"
+      class="rounded-2xl shadow-sm"
+    />
+  </div>
+
+  <!-- Name & category -->
+  <h2 class="text-base font-semibold text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors leading-snug mb-1">
+    {app.name}
+  </h2>
+  <p class="text-xs text-[#6e6e73] mb-3">{app.category}</p>
+
+  <!-- Rating -->
+  <div class="mt-auto flex items-center gap-1.5 text-xs text-[#6e6e73]">
+    {app.rating !== null ? (
+      <>
+        <StarRating rating={app.rating} size="sm" />
+        <span>{app.rating}</span>
+        {app.ratingCount > 0 && <span>({app.ratingCount.toLocaleString()})</span>}
+      </>
+    ) : (
+      <span>{t('apps.no_ratings', lang)}</span>
+    )}
+  </div>
+</a>

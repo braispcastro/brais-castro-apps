@@ -1,0 +1,45 @@
+---
+import type { Lang } from '../i18n/utils';
+import { t, getAlternateLang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  currentPath: string;
+}
+
+const { lang, currentPath } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const alternateLang = getAlternateLang(lang);
+
+// Build the alternate-language equivalent of the current path.
+// currentPath looks like /en/... or /es/...
+const alternatePath = currentPath.replace(`/${lang}`, `/${alternateLang}`);
+---
+
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-100">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+    <!-- Logo -->
+    <a href={`${base}/${lang}/`} class="text-base font-semibold text-[#1d1d1f] hover:text-[#0071e3] transition-colors">
+      Brais Castro
+    </a>
+
+    <!-- Nav + Lang switcher -->
+    <nav class="flex items-center gap-5 text-sm text-[#6e6e73]">
+      <a href={`${base}/${lang}/`} class="hover:text-[#1d1d1f] transition-colors">{t('nav.apps', lang)}</a>
+      <a href={`${base}/${lang}/privacy/`} class="hover:text-[#1d1d1f] transition-colors">{t('nav.privacy', lang)}</a>
+      <a href={`${base}/${lang}/contact/`} class="hover:text-[#1d1d1f] transition-colors">{t('nav.contact', lang)}</a>
+
+      <!-- Language switcher -->
+      <div class="flex items-center gap-1 ml-2 text-xs font-medium border border-gray-200 rounded-full overflow-hidden">
+        <a
+          href={lang === 'en' ? '#' : `${base}${alternatePath}`}
+          class={`px-2.5 py-1 transition-colors ${lang === 'en' ? 'bg-[#1d1d1f] text-white' : 'hover:bg-gray-50 text-[#6e6e73]'}`}
+        >EN</a>
+        <a
+          href={lang === 'es' ? '#' : `${base}${alternatePath}`}
+          class={`px-2.5 py-1 transition-colors ${lang === 'es' ? 'bg-[#1d1d1f] text-white' : 'hover:bg-gray-50 text-[#6e6e73]'}`}
+        >ES</a>
+      </div>
+    </nav>
+  </div>
+</header>
