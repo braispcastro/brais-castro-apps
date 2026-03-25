@@ -5,7 +5,7 @@ Guidelines for agentic coding agents working in this repository.
 ## Project Overview
 
 Static landing page for iOS apps by Brais Castro, built with **Astro 6** and **Tailwind CSS v4**.
-Deployed to GitHub Pages. App data is fetched from the iTunes Search API at build time.
+Deployed to Cloudflare Pages. App data is fetched from the iTunes Search API at build time.
 
 ## Tech Stack
 
@@ -14,7 +14,7 @@ Deployed to GitHub Pages. App data is fetched from the iTunes Search API at buil
 - **Styling:** Tailwind CSS v4 (using `@tailwindcss/vite`, NOT the legacy PostCSS integration)
 - **Package manager:** npm
 - **Node version:** `>=22.12.0` (required)
-- **Deployment:** GitHub Pages via GitHub Actions
+- **Deployment:** Cloudflare Pages (auto-deploy on push to `main`)
 
 ## Commands
 
@@ -54,7 +54,7 @@ src/
 public/           # Static assets (favicon, app-ads.txt)
 .github/
   workflows/
-    deploy.yml    # Build + deploy to GitHub Pages (also runs on a weekly cron)
+    deploy.yml    # Triggers Cloudflare Pages deploy on weekly cron for iTunes data refresh
 ```
 
 ## Routing & i18n
@@ -175,18 +175,15 @@ try {
 1. Create the page under `src/pages/[lang]/your-page.astro`.
 2. Create a root-level redirect at `src/pages/your-page.astro` using `LangRedirect.astro`.
 3. Add all visible strings to both `src/i18n/en.json` and `src/i18n/es.json`.
-4. Link to the page using the `base` variable pattern:
-   ```typescript
-   const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-   // → href={`${base}/${lang}/your-page`}
-   ```
+4. Link to the page: `href={`/${lang}/your-page`}`
 
 ## CI/CD
 
-The GitHub Actions workflow (`.github/workflows/deploy.yml`) triggers on:
-- Push to `main`
-- Weekly cron (Monday 06:00 UTC) — refreshes iTunes API data
-- Manual `workflow_dispatch`
+Cloudflare Pages auto-deploys on every push to `main` (build + deploy handled by Cloudflare).
 
-The build step runs `npm ci && npm run build`. Ensure `npm run build` succeeds locally before
-pushing, especially after changes to `src/data/apps.ts` or any `getStaticPaths` function.
+The GitHub Actions workflow (`.github/workflows/deploy.yml`) only handles the weekly cron
+(Monday 06:00 UTC) to trigger a Cloudflare deploy via Deploy Hook, refreshing iTunes API data.
+It also supports manual `workflow_dispatch`.
+
+Ensure `npm run build` succeeds locally before pushing, especially after changes to
+`src/data/apps.ts` or any `getStaticPaths` function.

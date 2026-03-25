@@ -19,10 +19,9 @@ No test runner, linter, or formatter is configured.
 
 ## Architecture
 
-Static landing page for iOS apps built with **Astro 6** + **Tailwind CSS v4**, deployed to **GitHub Pages**.
+Static landing page for iOS apps built with **Astro 6** + **Tailwind CSS v4**, deployed to **Cloudflare Pages**.
 
 - **Static output only** — all pages pre-rendered at build time via `getStaticPaths()`
-- **Base URL:** `/brais-castro-apps` (use `import.meta.env.BASE_URL.replace(/\/$/, '')` for links)
 - **Data source:** iTunes Search API, fetched at build time in `src/data/apps.ts`
 - **i18n:** Two languages (en/es) via `src/i18n/` — flat dot-notation keys, `t(key, lang)` helper, always update both JSON files
 - **Dark mode:** Class-based toggle (`dark` class on `<html>`), persisted to localStorage, falls back to system preference
@@ -36,4 +35,4 @@ Static landing page for iOS apps built with **Astro 6** + **Tailwind CSS v4**, d
 
 ## CI/CD
 
-GitHub Actions deploys on push to `main`, weekly cron (Monday 06:00 UTC to refresh iTunes data), and manual dispatch.
+Cloudflare Pages auto-deploys on push to `main`. GitHub Actions handles the weekly cron (Monday 06:00 UTC) to trigger a Cloudflare deploy via Deploy Hook, refreshing iTunes API data.
