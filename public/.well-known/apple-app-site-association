@@ -1,0 +1,10 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["7ACUHP269Y.com.braiscastro.stickersttv"],
+        "components": [{ "/": "/stickersttv/pack/*", "comment": "Shared sticker packs" }]
+      }
+    ]
+  }
+}
